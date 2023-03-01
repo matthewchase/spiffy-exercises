@@ -1,5 +1,8 @@
 import React from "react";
 import Exercise from "../exercise/Exercise";
+import Button from "./components/button/Button";
+import ProgressBar from "./components/progress_bar/ProgressBar";
+import useSimulateRequest from "./hooks/useSimulateNetworkRequest";
 
 const ProgressBarExercise = () => {
   return (
@@ -18,5 +21,16 @@ export default ProgressBarExercise;
 // ----------------------------------------------------------------------------------
 
 const Solution = () => {
-  return <div>Add solution here</div>;
+  const { status, startRequest, finishRequest } = useSimulateRequest();
+  return (
+    <div>
+      {/* Note -- this separation of concerns isn't ideal since the component needs to know 
+      the exact strings in hook. See if there is a cleaner way to accomplish that. */}
+      <ProgressBar status={status} />
+      {/* TODO, add state for loading button text */}
+      <Button onClick={startRequest}>START REQUEST</Button>
+      {/* Note - ideally these strings would be kept elsewhere for easier translations */}
+      <Button onClick={finishRequest}>FINISH REQUEST</Button>
+    </div>
+  );
 };
