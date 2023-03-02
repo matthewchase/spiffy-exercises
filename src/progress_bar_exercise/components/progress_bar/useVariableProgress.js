@@ -24,7 +24,7 @@ export const getBreakPointDurations = (breakpoints = [90]) =>
 export function getDurationDelays(durations) {
   let totalDelay = 0;
 
-  durations.map((duration) => {
+  return durations.map((duration) => {
     let delay = totalDelay;
     totalDelay += duration;
     return delay * ONE_SECOND_IN_MILLESCONDS;
@@ -41,7 +41,7 @@ export default function useVariableProgress(isLoading, breakpoints) {
 
   useEffect(() => {
     if (isLoading) {
-      let durations = getBreakPointDurations(breakpoints ?? [90]);
+      let durations = getBreakPointDurations(breakpoints);
       let delays = getDurationDelays(durations);
 
       for (let i = 0; i < breakpoints.length; i++) {
