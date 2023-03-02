@@ -32,7 +32,12 @@ const Solution = () => {
 
   return (
     <div>
-      <ProgressBar isLoading={isLoading} isFinishing={isFinishing} />
+      <ProgressBar
+        isLoading={isLoading}
+        isFinishing={isFinishing}
+        // TODO - built 90 in as default since other parts of the code expect it
+        breakpoints={[20, 40, 60, 90]}
+      />
 
       {/* Note - Would normally use a layout component or tailwind here */}
       <div style={{ display: "flex", justifyContent: "center", gap: "20px" }}>

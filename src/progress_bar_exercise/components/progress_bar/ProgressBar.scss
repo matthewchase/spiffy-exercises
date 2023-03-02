@@ -6,12 +6,11 @@
 }
 
 .progress-bar {
-  height: 5px;
+  height: 6px;
   width: 1px;
   opacity: 0;
   border-radius: inherit;
   background: linear-gradient(to right, $sunrise, $red);
-  transition: width 15s;
 }
 
 .progress-bar--loading {
