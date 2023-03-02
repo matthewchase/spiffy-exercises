@@ -1,15 +1,19 @@
 import { useState } from "react";
 
+const STATUS = {
+  IDLE: "IDLE",
+  LOADING: "LOADING",
+  FINISHING: "FINISHING",
+};
+
 export default function useSimulateRequest() {
-  const [status, setStatus] = useState("idle");
+  const [status, setStatus] = useState(STATUS.IDLE);
 
-  function startRequest() {
-    setStatus("loading");
-  }
+  const startRequest = () => setStatus(STATUS.LOADING);
+  const finishRequest = () => setStatus(STATUS.FINISHING);
 
-  function finishRequest() {
-    setStatus("finishing");
-  }
+  const isLoading = status === STATUS.LOADING;
+  const isFinishing = status === STATUS.FINISHING;
 
-  return { status, startRequest, finishRequest };
+  return { isLoading, isFinishing, startRequest, finishRequest };
 }

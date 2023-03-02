@@ -15,3 +15,8 @@
 .button:active {
   border-width: 3px;
 }
+
+.button.danger {
+  color: $red;
+  border-color: $red;
+}

@@ -1,10 +1,9 @@
 import React from "react";
 import "./Button.scss";
 
-export default function Button({ children, onClick }) {
+export default function Button({ children, onClick, color }) {
   return (
-    // TODO - handle color change request
-    <button className="button" onClick={onClick}>
+    <button className={`button ${color}`} onClick={onClick}>
       {children}
     </button>
   );

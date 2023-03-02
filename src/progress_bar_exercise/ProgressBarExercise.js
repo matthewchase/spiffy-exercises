@@ -20,17 +20,30 @@ export default ProgressBarExercise;
 
 // ----------------------------------------------------------------------------------
 
+const strings = {
+  LOADING: "LOADING",
+  START_REQUEST: "START REQUEST",
+  FINISH_REQUEST: "FINISH REQUEST",
+};
+
 const Solution = () => {
-  const { status, startRequest, finishRequest } = useSimulateRequest();
+  const { isLoading, isFinishing, startRequest, finishRequest } =
+    useSimulateRequest();
+
   return (
     <div>
-      {/* Note -- this separation of concerns isn't ideal since the component needs to know 
-      the exact strings in hook. See if there is a cleaner way to accomplish that. */}
-      <ProgressBar status={status} />
-      {/* TODO, add state for loading button text */}
-      <Button onClick={startRequest}>START REQUEST</Button>
-      {/* Note - ideally these strings would be kept elsewhere for easier translations */}
-      <Button onClick={finishRequest}>FINISH REQUEST</Button>
+      <ProgressBar isLoading={isLoading} isFinishing={isFinishing} />
+
+      {/* Note - Would normally use a layout component or tailwind here */}
+      <div style={{ display: "flex", justifyContent: "center", gap: "20px" }}>
+        <Button onClick={startRequest}>
+          {isLoading ? strings.LOADING : strings.START_REQUEST}
+        </Button>
+
+        <Button onClick={finishRequest} color="danger">
+          {strings.FINISH_REQUEST}
+        </Button>
+      </div>
     </div>
   );
 };
