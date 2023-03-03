@@ -2,7 +2,7 @@ import {
   calcStepDuration,
   getBreakPointDurations,
   getDurationDelays,
-} from "./useVariableProgress";
+} from "./helpers";
 
 describe("useProgressBar helpers", () => {
   test("calcStepDuration returns correct length of time between 20% of 15", () => {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Exercise from "../exercise/Exercise";
 import Button from "./components/button/Button";
 import ProgressBar from "./components/progress_bar/ProgressBar";
@@ -26,27 +26,39 @@ const strings = {
   FINISH_REQUEST: "FINISH REQUEST",
 };
 
+const divContainerStyle = {
+  display: "flex",
+  justifyContent: "center",
+  gap: "20px",
+  padding: "20px",
+  margin: "20px",
+};
+
 const Solution = () => {
   const { isLoading, isFinishing, startRequest, finishRequest } =
     useSimulateRequest();
+  const [showProgressBarV2, setShowProgressBarV2] = useState(false);
 
   return (
     <div>
       <ProgressBar
         isLoading={isLoading}
         isFinishing={isFinishing}
-        // TODO - built 90 in as default since other parts of the code expect it
         breakpoints={[20, 40, 60, 90]}
+        showV2={showProgressBarV2}
       />
 
-      {/* Note - Would normally use a layout component or tailwind here */}
-      <div style={{ display: "flex", justifyContent: "center", gap: "20px" }}>
+      <div style={divContainerStyle}>
         <Button onClick={startRequest}>
           {isLoading ? strings.LOADING : strings.START_REQUEST}
         </Button>
 
         <Button onClick={finishRequest} color="danger">
           {strings.FINISH_REQUEST}
+        </Button>
+
+        <Button onClick={() => setShowProgressBarV2(!showProgressBarV2)}>
+          {showProgressBarV2 ? "SHOW V1" : "SHOW V2"}
         </Button>
       </div>
     </div>

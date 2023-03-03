@@ -2,20 +2,21 @@ import React from "react";
 import "./ProgressBar.scss";
 import useVariableProgress from "./useVariableProgress";
 
-// ProgressBar simulates the current progress.
-export default function ProgressBar({ isLoading, isFinishing, breakpoints }) {
+export default function ProgressBar({
+  isLoading,
+  isFinishing,
+  breakpoints,
+  showV2,
+}) {
   const { width, duration } = useVariableProgress(isLoading, breakpoints);
 
-  // Styling
-  // Note - would normally use classnames lib, but intentionally leaving that out for the interview
-  let status = isLoading ? "loading" : "";
-  status = isFinishing ? "finishing" : status;
+  const status = isLoading ? "loading" : isFinishing ? "finishing" : "";
 
   return (
     <div className="progress">
       <div
         style={
-          isLoading
+          isLoading && showV2
             ? { width: `${width}%`, transition: `width ${duration}s` }
             : {}
         }

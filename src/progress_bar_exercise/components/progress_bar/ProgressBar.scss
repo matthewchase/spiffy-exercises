@@ -16,6 +16,7 @@
 .progress-bar--loading {
   width: 90%;
   opacity: 1;
+  transition: width 15s;
 }
 
 .progress-bar--finishing {
